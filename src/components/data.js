@@ -61,3 +61,4 @@ const Sliderss = ({ slides }) => {
     </div>)
 
 }
+export default Sliderss;

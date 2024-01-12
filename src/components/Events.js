@@ -27,13 +27,6 @@ const EventsPage = () => {
         'https://s1.ticketm.net/dam/a/7d5/97b67038-f926-4676-be88-ebf94cb5c7d5_1802151_TABLET_LANDSCAPE_LARGE_16_9.jpg'
     ]
 
-
-
-
-
-
-
-
     return (<main className='bg-[url(https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format)]  h-https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format    h-max '>
         <nav className='main bg-black bg-opacity-55  '>
             <div className='Title'>
@@ -112,3 +105,4 @@ const EventsPage = () => {
     )
 }
 
+export default EventsPage;
