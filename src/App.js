@@ -21,7 +21,7 @@
 // App.js
 
 import React from 'react'
-import Events from './components/Events'
+import Events from './components/Homepage'
 
 const App = () => {
   return (
