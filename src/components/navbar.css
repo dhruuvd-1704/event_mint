@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body{
     background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
     
@@ -113,3 +114,120 @@ a:hover
     width: 20px;
     height: 20px;
 }
+=======
+body{
+    background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
+    
+}
+nav{
+    background-color:none;
+    padding: 10px;
+    display: grid;
+    justify-content: space-between;
+    align-items: center;
+    grid-template-columns: 10rem 1fr 10rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    margin-bottom: 30px;
+}
+
+.Title {
+    color: white;
+    font-size: 1.5em;
+}
+
+ul {
+    
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    align-items: center;
+
+}
+li{
+    margin: 0;
+}
+
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bolder;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+a:hover
+{
+    opacity: 0.7;
+}
+.home-icon
+{
+    width: auto;
+    height: auto;
+}
+.profile ul li {
+    list-style: none;
+    
+}
+.home {
+    display: flex;
+    margin:0;
+    justify-content: center;
+    align-items: center;
+}
+.home-icon
+{
+    display: flex;
+    margin-right:10px;
+    width:20px;
+    height: 20px;
+}
+.event
+{
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+.event-icon
+{
+    display: flex;
+    margin-right:10px;
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+.marketplace
+{
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+
+}
+.marketplace-icon
+{
+    display: flex;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+
+}
+.profile-main
+{
+    display: flex;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+.profile-icon
+{
+    display: flex;
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+>>>>>>> d7cd0e3392759922b13dac76bec422d186d2175b
