@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 958905c (title color changed to aqua)
 import React from "react";
 import Sliderss from "./data";
 import "./navbar.css"
@@ -112,6 +115,7 @@ const EventsPage = () => {
     )
 }
 
+<<<<<<< HEAD
 =======
 import React from "react";
 import Sliderss from "./data";
@@ -227,4 +231,6 @@ const EventsPage = () => {
 }
 
 >>>>>>> d7cd0e3392759922b13dac76bec422d186d2175b
+=======
+>>>>>>> 958905c (title color changed to aqua)
 export default EventsPage

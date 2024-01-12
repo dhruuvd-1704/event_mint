@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 958905c (title color changed to aqua)
 import React from 'react'
 
 const NavBar = () => {
@@ -43,6 +46,7 @@ const NavBar = () => {
     )
 }
 
+<<<<<<< HEAD
 =======
 import React from 'react'
 
@@ -89,4 +93,6 @@ const NavBar = () => {
 }
 
 >>>>>>> d7cd0e3392759922b13dac76bec422d186d2175b
+=======
+>>>>>>> 958905c (title color changed to aqua)
 export default NavBar

@@ -20,6 +20,7 @@
 
 // App.js
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 import React from 'react'
 import Events from './components/Events'
@@ -29,6 +30,11 @@ import Events from './components/Events'
 import React from 'react'
 import Events from './components/Homepage'
 >>>>>>> d7cd0e3392759922b13dac76bec422d186d2175b
+=======
+
+import React from 'react'
+import Events from './components/Events'
+>>>>>>> 958905c (title color changed to aqua)
 
 const App = () => {
   return (

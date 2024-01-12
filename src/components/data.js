@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 958905c (title color changed to aqua)
 import React from "react"
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
@@ -62,6 +65,7 @@ const Sliderss = ({ slides }) => {
 
 }
 
+<<<<<<< HEAD
 =======
 import React from "react"
 import { FaArrowCircleRight } from "react-icons/fa";
@@ -127,4 +131,6 @@ const Sliderss = ({ slides }) => {
 }
 
 >>>>>>> d7cd0e3392759922b13dac76bec422d186d2175b
+=======
+>>>>>>> 958905c (title color changed to aqua)
 export default Sliderss

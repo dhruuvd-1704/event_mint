@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 958905c (title color changed to aqua)
 import React from 'react'
 import "./navbar.css"
 import home from './home.svg'
@@ -103,6 +106,7 @@ const Homepage = () => {
 }
 
 export default Homepage
+<<<<<<< HEAD
 =======
 import React from 'react'
 import "./navbar.css"
@@ -209,3 +213,5 @@ const Homepage = () => {
 
 export default Homepage
 >>>>>>> d7cd0e3392759922b13dac76bec422d186d2175b
+=======
+>>>>>>> 958905c (title color changed to aqua)
