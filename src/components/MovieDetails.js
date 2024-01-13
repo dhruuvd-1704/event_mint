@@ -13,7 +13,15 @@ const MovieDetails = () => {
                 <div className='overview'>
                     <h2>Overview:</h2>
                     <h3>A father, who is often away due to work, is unable to comprehend the intensity of his son's fervent love and admiration, which creates conflict between both of them.</h3>
+                    <div className='rating'>
+                        <img className='imdb' src='imdb.png' />
+                        <p >7.4/10</p>
+                    </div>
+                    <div>
+                        <button className='book'>Book Now</button>
+                    </div>
                 </div>
+
 
             </div>
             <div className='genre'>
