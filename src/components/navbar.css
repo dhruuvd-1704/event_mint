@@ -1,8 +1,4 @@
 
-body{
-    background-image: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);
-    
-}
 nav{
     background-color:none;
     padding: 10px;
@@ -36,7 +32,7 @@ li{
 }
 
 
-a {
+a{
     text-decoration: none;
     color: white;
     font-weight: bolder;
@@ -113,4 +109,98 @@ a:hover
     margin-right: 10px;
     width: 20px;
     height: 20px;
+}
+header .nav-btn {
+    padding: 5px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--textColor);
+    visibility: hidden;
+    opacity: 0;
+    font-size: 1.8rem;
+}
+@media only screen and (max-width: 1024px) {
+    header .nav-btn {
+        visibility: visible;
+        opacity: 1;
+    }
+    .home-icon
+{
+ margin-left:0 ;
+ padding-left: 0;
+}
+    /* .Title{
+        margin: 0;
+    }
+    .home-menu{
+        margin: 0;
+        padding: 0;
+        align-items:start;
+    }
+    .event
+    {
+        padding: 0;
+    }
+    ul
+    {
+        display: block;
+        margin: 0;
+        padding: 0;
+        
+        
+    }
+    li
+    {
+        align-items: flex-start;
+        justify-content: center;
+    } */
+    nav
+    {
+        display: block;
+        margin: 0;
+    }
+    ul 
+    {
+        display: block;
+    }
+    header nav {
+        position: fixed;
+        top: -100vh;
+        left: 100;
+        right: 100;
+        height: 100%;
+        width: 100%;
+        /* display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+        justify-content:space-evenly;
+        background-color: var(--mainColor);
+         */
+        transition: 1.5s;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content:space-between ;
+        
+    }
+
+    header .responsive_nav {
+        transform: translateY(100vh);
+    }
+
+    nav .nav-close-btn {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    nav Link {
+        font-size: 1.5rem;
+    }
+}
+
+body {
+    background-image: url('F: \web dev practice\styles\EventMint\public\bg.jpg');
 }

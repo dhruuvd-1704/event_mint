@@ -1,0 +1,135 @@
+body{
+    background-image: url("F:\web dev practice\styles\EventMint\public\bg.jpg");
+}
+.nft-info
+{
+    font-size: 3.75rem;
+    font-style: bold;
+    color: white;
+    line-height: 1;
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    margin-left: 150px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    display: flex;
+    
+   
+    font-weight: 700;
+}
+.nft-img-c-1
+{
+    margin: 0;
+    display: flex;
+}
+.nft-img-1
+{
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    margin-right: 0;
+}
+.nft-img-2
+{
+    display: flex;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 0;
+   
+    vertical-align: middle;
+   
+}
+.nft-img-3
+{
+     display: flex;
+    margin-top: 170px;
+    margin-bottom: 170px;
+    margin-left: 0;
+   
+    vertical-align: middle;
+}
+.nft-sub-info
+{
+    display: block;
+    font-size: 1.3rem;
+    font-style: bold;
+    color: white;
+    width:400px;
+    margin-top: 50px;
+    margin-right: 50px;
+    font-weight: 500;
+
+}
+.mid-info
+{
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color:white;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.mid-sub-info
+{
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white;
+    margin-top: 20px;
+}
+
+.nft-logo-info{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nft-logo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+.nft-sub-h
+{
+     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    margin-bottom: 0;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color:white;
+    padding: 20px;
+    padding-top: 0;
+    margin-top: 0
+
+}
+.nft-box-info
+{
+    width:340px;
+    height: fit-content;
+    display: flex;
+    text-align: center;
+    font-weight: 500;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-top: 0;
+   
+}
+.buttons
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.how
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

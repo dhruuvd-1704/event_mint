@@ -3,7 +3,6 @@ import React from "react"
 import { FaArrowCircleRight } from "react-icons/fa";
 import { FaArrowCircleLeft } from "react-icons/fa";
 import { useState } from "react";
-import './Events.css'
 
 
 
@@ -26,13 +25,7 @@ const Sliderss = ({ slides }) => {
             setCurrent(current + 1)
         }
     }
-
-
-
-
-
-
-    return (<div className="overflow-hidden relative w-96">
+    return (<div className="overflow-hidden relative">
         <div className="flex transition ease-out duration-500 "
             style={{ transform: `translateX(-${current * 100}%)`, }}
         >
