@@ -1,0 +1,109 @@
+.concert-header
+{
+    margin-top:100px;
+    margin: 50px;
+    margin-bottom: 10px;
+    
+}
+.concert-image
+{
+    margin:30px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+.concert-title
+{
+    color: black;
+    font-size: 2rem;
+    margin-left: 30px;
+    font-weight: 700;
+}
+.concert-genre
+{
+    color:rgb(75, 73, 73);
+    font-size: 1.2rem;
+    margin:30px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+.image-artist
+{
+    margin: 30px;
+    width:100px;
+    height:100px;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+.concert-artist{
+     margin: 50px;
+    margin-bottom: 10px;
+}
+.concert-artist-title
+{
+    color: black;
+    font-size: 1.8rem;
+    margin: 30px;
+    font-weight: 600;
+    margin-top: 10px;
+
+}
+.artist-name
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    color: black;
+    margin-top: 10px;
+    font-weight: 500;
+}
+ul li {
+    list-style: none;
+    display: flex;
+    color: white;
+}
+.concert-about 
+{
+    margin-top:20px;
+     margin: 50px;
+    margin-bottom: 10px;
+    width:600px;
+    
+
+}
+.concert-about-title
+{
+    color:rgb(45, 43, 43);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin:30px;
+
+}
+p{
+    font-size: 1.2rem;
+    margin:30px;
+    font-weight: 500;
+
+}
+
+.book
+{
+    background-color:rgb(140, 41, 41);
+    color:white;
+    font-size: 1rem;
+    border:none;
+    margin:20px;
+    margin-left: 30px;
+    border-radius: 8px;
+    align-items: center;
+    width:130px;
+    height: 45px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.book:hover
+{
+    opacity: 0.5;
+    transition-delay: 150ms;
+}

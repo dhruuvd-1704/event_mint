@@ -1,10 +1,8 @@
+
 import React from "react";
 import Sliderss from "./data";
 import "./navbar.css"
-import home from './home.svg'
-import event from './event.png'
-import marketplace from './ethereum.png'
-import profile from './profile.png'
+
 
 
 
@@ -26,51 +24,8 @@ const EventsPage = () => {
         'https://s1.ticketm.net/dam/a/7d5/97b67038-f926-4676-be88-ebf94cb5c7d5_1802151_TABLET_LANDSCAPE_LARGE_16_9.jpg'
     ]
 
+    return (<main className='bg-[url("F:\web dev practice\styles\EventMint\public\bg.jpg")]  h-https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format    h-max '>
 
-
-
-
-
-
-
-    return (<main className='bg-[url(https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format)]  h-https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format    h-max '>
-        <nav className='main bg-black bg-opacity-55  '>
-            <div className='Title'>
-                <h2>EventMint</h2>
-            </div>
-            <div className='menu'>
-                <ul>
-
-                    <li>
-                        <a href='#' className='home'>
-                            <img className='home-icon' src={home} /> Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' className='event'>
-                            <img className='event-icon' src={event} /> Events
-                        </a>
-                    </li>
-                    <li>
-                        <a href='#' className='marketplace'>
-                            <img className='marketplace-icon' src={marketplace} />Marketplace
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div className='profile'>
-                <ul>
-                    <li>
-                        <a href='#' className='profile-main'>
-                            <img className='profile-icon' src={profile} /> Profile
-                        </a>
-                    </li>
-                </ul>
-
-            </div>
-
-
-        </nav>
 
         <div className=" bg-white bg-opacity-5 ">
             <div className=" pt-20 pl-52  ">
@@ -97,11 +52,7 @@ const EventsPage = () => {
 
 
         </div>
-        <div className='bg-black h-40 bg-opacity-55  ' >
-            <p className='text-left pl-9 text-xl font-medium text-white'>Contact Us :</p>
-            <p className=' my-1 text-left pl-9 text-xs font-medium text-white'><p className='font-semibold text-base'>Tele No.: </p>XXXXXXXXX</p>
-            <p className=' my-1 text-left pl-9 text-xs font-medium text-white'><p className='font-semibold text-base'>Email :</p>eventmint2023@gmail.com</p>
-        </div>
+
 
 
 
@@ -111,4 +62,5 @@ const EventsPage = () => {
     )
 }
 
-export default EventsPage
+export default EventsPage;
+

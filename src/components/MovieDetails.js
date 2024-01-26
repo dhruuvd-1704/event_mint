@@ -1,11 +1,5 @@
 import React from 'react'
 import './MovieDetails.css'
-import home from './home.svg'
-import event from './event.png'
-import marketplace from './ethereum.png'
-import profile from './profile.png'
-
-
 const MovieDetails = () => {
     return (
 
@@ -17,9 +11,20 @@ const MovieDetails = () => {
             <div className='menu'>
                 <img className='poster' src='https://autowithsid.in/wp-content/uploads/2023/06/Animal-Upcoming-Ranbir-Kapoor-Movie-2023.jpg' />
                 <div className='overview'>
-                    <h2>Overview:</h2>
-                    <h3>A father, who is often away due to work, is unable to comprehend the intensity of his son's fervent love and admiration, which creates conflict between both of them.</h3>
+                    <div className='content'>
+                        <h2>Overview:</h2>
+                        <h3>A father, who is often away due to work, is unable to comprehend the intensity of his son's fervent love and admiration, which creates conflict between both of them.</h3>
+                    </div>
+
+                    <div className='rating'>
+                        <img className='imdb' src='imdb.png' />
+                        <p >7.4/10</p>
+                    </div>
+                    <div>
+                        <button className='book'>Book Now</button>
+                    </div>
                 </div>
+
 
             </div>
             <div className='genre'>
@@ -62,5 +67,4 @@ const MovieDetails = () => {
 
     )
 }
-
-export default MovieDetails
+export default MovieDetails;

@@ -25,12 +25,6 @@ const Sliderss = ({ slides }) => {
             setCurrent(current + 1)
         }
     }
-
-
-
-
-
-
     return (<div className="overflow-hidden relative">
         <div className="flex transition ease-out duration-500 "
             style={{ transform: `translateX(-${current * 100}%)`, }}
