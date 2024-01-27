@@ -31,9 +31,9 @@ const EventsPage = () => {
             <div className=" pt-20 pl-52  ">
                 <b className="text-center pl-4 pr-4 pt-4 pb-4 rounded-full font-bold text-white bg-black border-white border-solid border-2 ">Featured Events</b>
             </div>
-            <div className="pt-16 box-border m-auto  w-[90%]  size   flex space-x-4">
-                <Sliderss slides={slides}></Sliderss>
-                <Sliderss slides={sports}></Sliderss>
+            <div className="pt-16 box-border m-auto  w-[70%]  size h-auto rounded-md   flex space-x-4">
+                {/* <Sliderss slides={slides}></Sliderss>
+                <Sliderss slides={sports}></Sliderss> */}
                 <Sliderss slides={concerts}></Sliderss>
             </div>
 

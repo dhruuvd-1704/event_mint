@@ -8,12 +8,14 @@ import event from './event.png'
 import marketplace from './ethereum.png'
 import profile from './profile.png'
 import { Link } from 'react-router-dom'
+import logo from './EventMint_logo.png'
 
 
 const NavBar = () => {
     const navRef = useRef();
     const showNav = () => {
         navRef.current.classList.toggle("responsive_nav")
+
     }
 
 
@@ -22,7 +24,7 @@ const NavBar = () => {
             <header>
                 <nav className='main' ref={navRef}>
                     <div className='Title'>
-                        <h2>EventMint</h2>
+                        <img className='logo' src={logo} alt='EventMint' />
                     </div>
                     <div className='menu'>
                         <ul>
@@ -35,7 +37,7 @@ const NavBar = () => {
 
                             </li>
                             <li>
-                                <div>
+                                <div className='events-menu'>
                                     <Link to="/Events" className='event'>
                                         <img className='event-icon' src={event} /> Events
                                     </Link>
@@ -43,7 +45,7 @@ const NavBar = () => {
 
                             </li>
                             <li>
-                                <div>
+                                <div className='marketplace-menu'>
                                     <Link to="/Events" className='marketplace'>
                                         <img className='marketplace-icon' src={marketplace} />MarketPlace
                                     </Link>

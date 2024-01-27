@@ -4,9 +4,10 @@ import './HomePage.css'
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Animation from './Animation'
 import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 
-const Homepage = () => {
+const Homepage = ({ children }) => {
     const navigate = useNavigate();
     const navigateToEvents = () => {
 
@@ -15,6 +16,10 @@ const Homepage = () => {
     const navigateToLogin = () => {
         navigate('/Profile');
     }
+    const [ref, inView] = useInView({
+        triggerOnce: true, // Only trigger once
+        threshold: 0.5, // 50% of the element is in view
+    });
     return (
 
         <>
@@ -72,10 +77,12 @@ const Homepage = () => {
 
                     </motion.div>
                     <motion.div
+                        ref={ref}
                         initial={{ opacity: 0, y: 2000 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 4 }}
+                        animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 250 }}
+                        transition={{ duration: 3, delay: 0 }}
                     >
+                        {children}
                         <div className='mid-info'>
                             <h2>Revolutionise your ticketing with NFTs</h2>
                             <h2>- Sell on SeatlabNFT Today!</h2>
@@ -147,12 +154,20 @@ const Homepage = () => {
                                 </motion.button>
                             </div>
                         </div>
+
+
+
                     </motion.div>
+                    <motion.div
 
+                        ref={ref}
+                        initial={{ opacity: 0, x: -2000 }}
+                        animate={{ opacity: inView ? 1 : 0, x: inView ? 0 : 250 }}
+                        transition={{ duration: 3, delay: 0 }}
 
+                    >
 
-
-
+                    </motion.div>
 
                     <div className=" pt-28 pl-28 pr-10 font-semibold text-4xl text-white space-y-3 text-center">
                         <h1>How it Works?</h1>
