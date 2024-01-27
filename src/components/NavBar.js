@@ -9,6 +9,7 @@ import marketplace from './ethereum.png'
 import profile from './profile.png'
 import { Link } from 'react-router-dom'
 
+
 const NavBar = () => {
     const navRef = useRef();
     const showNav = () => {
@@ -26,7 +27,7 @@ const NavBar = () => {
                     <div className='menu'>
                         <ul>
                             <li>
-                                <div>
+                                <div className='home-menu'>
                                     <Link to="/" className='home'>
                                         <img className='home-icon' src={home} /> Home
                                     </Link>
@@ -43,7 +44,7 @@ const NavBar = () => {
                             </li>
                             <li>
                                 <div>
-                                    <Link to="/MarketPlace" className='marketplace'>
+                                    <Link to="/Events" className='marketplace'>
                                         <img className='marketplace-icon' src={marketplace} />MarketPlace
                                     </Link>
                                 </div>

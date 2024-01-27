@@ -4,27 +4,29 @@ import NavBar from './components/NavBar'
 import Home from './components/Homepage'
 import Events from './components/Events'
 import Profile from './components/LoginPage'
-import Homepage from './components/Homepage'
+
 
 import { Route, Routes } from 'react-router-dom'
 import Footer from './components/Footer'
 
 
+import Card from './components/Card'
 import './styles.css'
 
 
 const App = () => {
+
   return (
     <>
       <NavBar />
-
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/Events" element={<Events />} />
-        <Route path="/Events" component={Events} />
+        <Route path="/MarketPlace" component={<Events />} />
         <Route path="/Profile" element={<Profile />} />
       </Routes>
       <Footer />
+
 
 
     </>
@@ -34,4 +36,6 @@ const App = () => {
 export default App;
 
 
+
+// App.js
 
