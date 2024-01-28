@@ -15,10 +15,13 @@ export default function App() {
     <MDBFooter className='bg-dark text-center text-white'>
       <MDBContainer className='p-4 pb-0'>
         <section className='mb-4'>
-          <MDBBtn outline color="light" floating className='m-5' href='https://facebook.com' role='link'>
-            <a href='https://facebook.com'></a>
+          <a href='https://facebook.com'>
+            <MDBBtn outline color="light" floating className='m-5' href='https://facebook.com' role='link'>
+          
             <MDBIcon fab icon='facebook-f' />
           </MDBBtn>
+          </a>
+          
 
           <MDBBtn outline color="light" floating className='m-5' href='https://x.com/' role='link'>
             <MDBIcon fab icon='twitter' />

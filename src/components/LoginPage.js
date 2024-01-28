@@ -120,13 +120,13 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
+        <div className="flex items-center justify-center min-h-screen ">
             <div className="relative">
                 {/* Your website content goes here */}
 
 
                 {/* Login form */}
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 p-8 bg-opacity-50 rounded-md shadow-md">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 p-8 bg-opacity-50 rounded-md shadow-sm shadow-black">
                     <h2 className="text-2xl font-semibold text-center text-white mb-4">
                         {loginMode ? 'Login' : 'Sign Up'}
                     </h2>
@@ -144,7 +144,7 @@ const LoginForm = () => {
                                     value={formData.username}
                                     onChange={handleInputChange}
                                     required
-                                    className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-800 text-gray-200 placeholder-gray-500"
+                                    className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-500 bg-opacity-20 shadow-lg text-gray-200 placeholder-gray-100 backdrop-blur-lg"
                                 />
                             </div>
                         )}
@@ -160,11 +160,11 @@ const LoginForm = () => {
                                 value={formData.email}
                                 onChange={handleInputChange}
                                 required
-                                className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-800 text-gray-200 placeholder-gray-500"
+                                className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-500 bg-opacity-20 shadow-lg text-gray-200 placeholder-gray-100 backdrop-blur-lg"
                             />
                         </div>
                         <div className="mb-4">
-                            <label htmlFor="password" className="block text-gray-200 mb-1">
+                            <label htmlFor="password" className="block text-gray-200 mb-1 ">
                                 Password:
                             </label>
                             <input
@@ -175,7 +175,7 @@ const LoginForm = () => {
                                 value={formData.password}
                                 onChange={handleInputChange}
                                 required
-                                className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-800 text-gray-200 placeholder-gray-500"
+                                className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-500 bg-opacity-20 shadow-lg text-gray-200 placeholder-gray-100 backdrop-blur-lg"
                             />
                         </div>
                         <button
@@ -187,7 +187,7 @@ const LoginForm = () => {
                     </form>
                     <p
                         onClick={handleSwitchMode}
-                        className="text-center mt-4 text-blue-300 cursor-pointer"
+                        className="text-center mt-4 text-white   cursor-pointer"
                     >
                         {loginMode ? 'Create an account' : 'Already have an account? Login'}
                     </p>
