@@ -21,8 +21,8 @@ const NavBar = () => {
 
     return (
         <>
-            <header>
-                <nav className='main' ref={navRef}>
+            <header className='mb-10' >
+                <nav className='main  backdrop-blur-sm pb-0 mb-10' ref={navRef}>
                     <div className='Title'>
                         <img className='logo' src={logo} alt='EventMint' />
                     </div>
