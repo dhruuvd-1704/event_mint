@@ -20,20 +20,20 @@ import SiteMap from './components/map'
 const App = () => {
 
   return (
-    // <>
-    //   <NavBar />
-    //   <Routes>
-    //     <Route exact path="/" element={<Home />} />
-    //     <Route path="/Events" element={<Events />} />
-    //     <Route path="/MarketPlace" element={<Marketplace/>} />
-    //     <Route path="/Profile" element={<Profile />} />
-    //   </Routes>
-    //   <Footer />
+    <>
+      <NavBar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/Events" element={<Events />} />
+        <Route path="/MarketPlace" element={<Marketplace/>} />
+        <Route path="/Profile" element={<Profile />} />
+      </Routes>
+      <Footer />
 
 
 
-    // </>
-    <SiteMap></SiteMap>
+    </>
+    // {/* <SiteMap></SiteMap> */}
   )
 }
 
