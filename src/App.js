@@ -3,7 +3,7 @@ import React from 'react'
 import NavBar from './components/NavBar'
 import Home from './components/Homepage'
 import Events from './components/Events'
-import Profile from './components/LoginPage'
+
 import Marketplace from './components/Marketplace'
 
 
@@ -15,6 +15,9 @@ import Card from './components/Card'
 import './styles.css'
 
 import SiteMap from './components/map'
+import LoginPage from './components/LoginpageNew'
+import SignUpPage from './components/SignupPage'
+
 
 
 const App = () => {
@@ -26,14 +29,18 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/MarketPlace" element={<Marketplace/>} />
-        <Route path="/Profile" element={<Profile />} />
+       
+        <Route path="/LoginpageNew" element={<LoginPage />} />
+          <Route path="/SignUpPage" element={<SignUpPage />} />
       </Routes>
       <Footer />
 
 
 
     </>
-    // {/* <SiteMap></SiteMap> */}
+    // <SiteMap></SiteMap> 
+   
+    // <SignUpPage></SignUpPage>
   )
 }
 

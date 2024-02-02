@@ -9,7 +9,7 @@ import marketplace from './ethereum.png'
 import profile from './profile.png'
 import { Link } from 'react-router-dom'
 import logo from './EventMint_logo.png'
-
+import LoginPage from './LoginpageNew'
 
 const NavBar = () => {
     const navRef = useRef();
@@ -69,7 +69,7 @@ const [userLoggedIn, setUserLoggedIn] = useState(false);
                     </li>
                 ) : (
                     <li>
-                        <Link to='/Login' className='profile-main'>
+                        <Link to='/LoginpageNew' className='profile-main'>
                             Login / Sign Up
                         </Link>
                     </li>
