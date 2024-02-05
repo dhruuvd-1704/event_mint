@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom'; // Assuming you're using React Router for navigation
-import SignUpPage from './SignupPage';
+import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
-const LoginPage = () => {
+const SignUpPage = () => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
+        username: '',
         email: '',
         password: '',
     });
@@ -16,9 +19,14 @@ const LoginPage = () => {
         }));
     };
 
+    const {username,email,password}=formData;
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Login Form submitted:', formData);
+        // console.log('Sign Up Form submitted:', formData);
+        axios.post('http://localhost:5000/SignUpPage',{username,email,password })
+        .then(result=>{console.log(result)
+        navigate('/')})
+        .catch(err=>console.log(err))
     };
 
     return (
@@ -26,9 +34,24 @@ const LoginPage = () => {
             <div className="relative">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 p-8 bg-opacity-50 rounded-md shadow-sm shadow-black">
                     <h2 className="text-2xl font-semibold text-center text-white mb-4">
-                        Login
+                        Sign Up
                     </h2>
                     <form onSubmit={handleSubmit}>
+                        <div className="mb-4">
+                            <label htmlFor="username" className="block text-gray-200 mb-1">
+                                Username:
+                            </label>
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username"
+                                value={formData.username}
+                                onChange={handleInputChange}
+                                required
+                                className="w-full px-4 py-2 border border-gray-400 rounded-md focus:outline-none focus:border-blue-500 bg-gray-500 bg-opacity-20 shadow-lg text-gray-200 placeholder-gray-100 backdrop-blur-lg"
+                            />
+                        </div>
                         <div className="mb-4">
                             <label htmlFor="email" className="block text-gray-200 mb-1">
                                 Email:
@@ -63,11 +86,11 @@ const LoginPage = () => {
                             type="submit"
                             className="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600"
                         >
-                            Login
+                            Sign Up
                         </button>
                     </form>
                     <p className="text-center mt-4 text-white">
-                        New? <Link to="/SignupPage">Create an Account</Link>
+                        Already have an account? <Link to="/LoginpageNew">Login</Link>
                     </p>
                 </div>
             </div>
@@ -75,5 +98,5 @@ const LoginPage = () => {
     );
 };
 
-export default LoginPage;
+export default SignUpPage;
 
