@@ -12,7 +12,8 @@ import {
 
 export default function App() {
   return (
-    <MDBFooter className='bg-dark text-center text-white'>
+    <div className='flex justify-center'>
+      <MDBFooter className='bg-dark text-center text-white'>
       <MDBContainer className='p-4 pb-0'>
         <section className='mb-4'>
           <a href='https://facebook.com'>
@@ -22,34 +23,46 @@ export default function App() {
           </MDBBtn>
           </a>
           
-
-          <MDBBtn outline color="light" floating className='m-5' href='https://x.com/' role='link'>
+        <a href='https://x.com/'>
+        <MDBBtn outline color="light" floating className='m-5' href='https://x.com/' role='link'>
             <MDBIcon fab icon='twitter' />
           </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-5' href='#!' role='button'>
+        </a>
+        <a href='https://google.com'> 
+          <MDBBtn outline color="light" floating className='m-5' href='https://google.com' role='button'>
             <MDBIcon fab icon='google' />
           </MDBBtn>
-          <MDBBtn outline color="light" floating className='m-5' href='#!' role='button'>
+        </a>
+          
+          <a href='https://instagram.com'>
+         <MDBBtn outline color="light" floating className='m-5' href='https://instagram.com' role='button'>
             <MDBIcon fab icon='instagram' />
           </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-5' href='#!' role='button'>
+          </a>
+         
+        <a href='https://linkedin.com'>
+        <MDBBtn outline color="light" floating className='m-5' href='https://linkedin.com' role='button'>
             <MDBIcon fab icon='linkedin-in' />
           </MDBBtn>
-
-          <MDBBtn outline color="light" floating className='m-5' href='#!' role='button'>
+        </a>
+          <a href='https://github.com'>
+        <MDBBtn outline color="light" floating className='m-5' href='https://github.com' role='button'>
             <MDBIcon fab icon='github' />
           </MDBBtn>
+          </a>
+
+          
         </section>
       </MDBContainer>
 
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
+      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
         © 2020 Copyright:
         <a className='text-white' href='https://google.com/'>
           EventMint.com
         </a>
       </div>
     </MDBFooter>
+    </div>
+    
   );
 }
