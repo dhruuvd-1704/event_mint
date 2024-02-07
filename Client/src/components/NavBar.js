@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { FaBars, FaTimes } from 'react-icons/fa'
-import { useRef, useState,useEffect } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import './navbar.css'
 import home from './home.svg'
 import event from './event.png'
@@ -17,18 +17,17 @@ const NavBar = () => {
         navRef.current.classList.toggle("responsive_nav")
 
     }
-const [userLoggedIn, setUserLoggedIn] = useState(false);
 
-    useEffect(() => {
-        // Check user login status here and update setUserLoggedIn accordingly
-        // For example, you might fetch this information from your authentication system
-        // setUserLoggedIn(true); // Set to true if the user is logged in
-    }, []);
+    // useEffect(() => {
+    //     // Check user login status here and update setUserLoggedIn accordingly
+    //     // For example, you might fetch this information from your authentication system
+    //     // setUserLoggedIn(true); // Set to true if the user is logged in
+    // }, []);
 
     return (
         <>
             <header className='mb-10 ' >
-                <nav className='main  backdrop-blur-sm pb-0 mb-10 shadow   '  ref={navRef}>
+                <nav className='main  backdrop-blur-sm pb-0 mb-10 shadow   ' ref={navRef}>
                     <div className='Title'>
                         <img className='logo' src={logo} alt='EventMint' />
                     </div>
@@ -59,23 +58,17 @@ const [userLoggedIn, setUserLoggedIn] = useState(false);
                             </li>
                         </ul>
                     </div>
-              <div className='profile'>
-            <ul>
-                {userLoggedIn ? (
-                    <li>
-                        <Link to='/Profile' className='profile-main'>
-                            <img className='profile-icon' src={profile} alt="Profile Icon" /> Profile
-                        </Link>
-                    </li>
-                ) : (
-                    <li>
-                        <Link to='/LoginpageNew' className='profile-main'>
-                            Login / Sign Up
-                        </Link>
-                    </li>
-                )}
-            </ul>
-        </div>
+                    <div className='profile'>
+                        <ul>
+
+                            <li>
+                                <Link to='/LoginpageNew' className='profile-main'>
+                                    <img className='profile-icon' src={profile} alt="Profile Icon" /> Profile
+                                </Link>
+                            </li>
+
+                        </ul>
+                    </div>
                     <button onClick={showNav} className='nav-btn nav-close-btn'>
                         <FaTimes />
                     </button>
