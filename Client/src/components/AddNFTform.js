@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 
 const AddNFTForm = ({ onSubmit }) => {
   const [title, setTitle] = useState("");
@@ -29,12 +30,15 @@ const AddNFTForm = ({ onSubmit }) => {
 
     setWarning("");
 
-    onSubmit({ title, price, imageFile });
+    onSubmit({ title, price, imageURL });
 
     setTitle("");
     setPrice("");
     setImageURL("");
     setImageFile(null);
+  };
+  AddNFTForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
   };
 
   return (
@@ -92,7 +96,6 @@ const AddNFTForm = ({ onSubmit }) => {
               Add NFT
             </button>
           </div>
-
         </form>
       </section>
       <section className="flex justify-center items-center">
@@ -103,7 +106,7 @@ const AddNFTForm = ({ onSubmit }) => {
               <h1 className="font-bold text-white size-auto">{title.toUpperCase() || "TITLE"}</h1>
               <div className="pb-3 mt-2 flex space-x-3 place-items-center">
                 <p className="text-white font-bold font-mono">Price: {price || "$0.00"}</p>
-                <button className="font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-3 rounded-full">
+                <button type="button" className="font-semibold bg-gradient-to-r from-cyan-500 to-blue-500 text-white p-3 rounded-full" onClick={handleSubmit}>
                   Buy NFT
                 </button>
               </div>
