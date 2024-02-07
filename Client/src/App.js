@@ -37,7 +37,7 @@ const App = () => {
   };
   return (
     <>
-      {/* <NavBar />
+      <NavBar />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/Events" element={<Events featuredSlides={featuredSlides} upcomingSlides={upcomingSlides} />} />
@@ -45,12 +45,12 @@ const App = () => {
         <Route path="/LoginpageNew" element={<LoginPage />} />
         <Route path="/SignUpPage" element={<SignUpPage />} />
       </Routes>
-      <Footer /> */}
-      <MovieDetails
+      <Footer />
+      {/* <MovieDetails
         posterUrl='https://assets.raribleuserdata.com/prod/v1/image/t_avatar_big/aHR0cHM6Ly9pcGZzLnJhcmlibGV1c2VyZGF0YS5jb20vaXBmcy9iYWZ5YmVpZWw3NnQzZ2lnZ3ljbmR1ZXNmajc2dnpkdXNheWNkZmNrcXh2bXhzczJkNG9mYjdyNDJ6ZS9IRUFERkFDRTAxMDc3XzAwNjcucG5n'
         title='Rejoice '
         description='"Rejoice" is a vibrant and uplifting piece of art that captures the essence of joy and celebration like flowers in full bloom, the orb of light is a third eye as an homage to the other side.'
-      />
+      /> */}
     </>
     //   // <>
     //     {/* <div className=' flex'>
