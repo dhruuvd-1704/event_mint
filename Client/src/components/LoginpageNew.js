@@ -4,14 +4,13 @@ import SignUpPage from './SignupPage';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const LoginPage = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+    const [invalidCredentials, setInvalidCredentials] = useState(false); // State to track invalid credentials
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -80,6 +79,9 @@ const LoginPage = () => {
                             Login
                         </button>
                     </form>
+                    {invalidCredentials && (
+                        <p className="text-red-500 text-center mt-2">Invalid credentials. Please try again.</p>
+                    )}
                     <p className="text-center mt-4 text-white">
                         New? <Link to="/SignupPage">Create an Account</Link>
                     </p>
@@ -90,4 +92,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-

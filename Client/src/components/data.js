@@ -1,7 +1,6 @@
 
 import React from "react"
-import { FaArrowCircleRight } from "react-icons/fa";
-import { FaArrowCircleLeft } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { useState } from "react";
 
 
@@ -40,10 +39,10 @@ const Sliderss = ({ slides }) => {
             })}</div>
         <div className="absolute top-0 h-full w-full justify-between items-center flex text-3xl text-white px-10 opacity-45">
             <button onClick={previousSlide}>
-                <FaArrowCircleLeft></FaArrowCircleLeft>
+                <FaChevronLeft></FaChevronLeft>
             </button>
             <button onClick={nextSlide}>
-                <FaArrowCircleRight></FaArrowCircleRight>
+                <FaChevronRight></FaChevronRight>
             </button>
         </div>
 

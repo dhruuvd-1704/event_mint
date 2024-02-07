@@ -1,70 +1,70 @@
-import React from 'react'
-import './MovieDetails.css'
-const MovieDetails = () => {
+import React, { useState } from 'react';
+
+const MovieDetails = ({ posterUrl, title, description }) => {
+    const [quantity, setQuantity] = useState(1);
+
+    const decrement = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const increment = () => {
+        setQuantity(quantity + 1);
+    };
+
+    const handleMintNow = () => {
+        if (window.ethereum) {
+            window.ethereum
+                .request({ method: 'eth_requestAccounts' })
+                .then((accounts) => {
+                    console.log('Connected account:', accounts[0]);
+                    // Perform minting logic here
+                })
+                .catch((error) => {
+                    console.error('Error connecting to MetaMask:', error);
+                });
+        } else {
+            console.error('MetaMask is not installed');
+            alert('Metamask is not installed');
+        }
+    };
+
     return (
-
-        <main className='bg-[url(https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format)]  h-https://images.yourstory.com/cs/1/eb1786d0-a7a9-11e9-b510-6f7c0abb0d14/audience-band-celebration-22634361567750376859.jpg?fm=png&auto=format    h-max '>
-
-            <div className='heading'>
-                <h1 className='title'>Animal</h1>
-            </div>
-            <div className='menu'>
-                <img className='poster' src='https://autowithsid.in/wp-content/uploads/2023/06/Animal-Upcoming-Ranbir-Kapoor-Movie-2023.jpg' />
-                <div className='overview'>
-                    <div className='content'>
-                        <h2>Overview:</h2>
-                        <h3>A father, who is often away due to work, is unable to comprehend the intensity of his son's fervent love and admiration, which creates conflict between both of them.</h3>
+        <main className='flex justify-center items-center min-h-screen bg-transparent'>
+            <div className='flex bg-transparent p-8 rounded-lg shadow-lg'>
+                <img
+                    src={posterUrl}
+                    alt='Movie Poster'
+                    className='rounded-lg mb-8 shadow-md'
+                    style={{ width: '500px', height: '500px' }}
+                />
+                <div className='flex flex-col ml-8'>
+                    <h1 className='text-3xl font-bold text-white mb-10 m-10'>{title}</h1>
+                    <p className='text-gray-300 text-lg max-w-[500px] mb-10'>
+                        {description}
+                    </p>
+                    <div className='flex items-center justify-center'>
+                        <button className='text-white py-2 px-4 hover:bg-blue-600 transition duration-300 ease-in-out focus:outline-none' onClick={decrement}>
+                            -
+                        </button>
+                        <input
+                            type='number'
+                            className='bg-transparent text-white w-16 px-2 py-1 text-center focus:outline-none'
+                            value={quantity}
+                            readOnly
+                            style={{ fontSize: '1rem', fontWeight: 'bold' }}
+                        />
+                        <button className='text-white py-2 px-4 hover:bg-blue-600 transition duration-300 ease-in-out focus:outline-none' onClick={increment}>
+                            +
+                        </button>
+                        <button className='bg-blue-500 text-white py-2 px-6 mt-4 rounded-md hover:bg-blue-600 transition duration-300 ease-in-out focus:outline-none ml-5 ' onClick={handleMintNow}>Mint Now</button>
                     </div>
 
-                    <div className='rating'>
-                        <img className='imdb' src='imdb.png' />
-                        <p >7.4/10</p>
-                    </div>
-                    <div>
-                        <button className='book'>Book Now</button>
-                    </div>
                 </div>
-
-
             </div>
-            <div className='genre'>
-                <button>Crime</button>
-                <button>Drama</button>
-                <button>Thriller</button>
-            </div>
-
-            <div className='info'>
-                <p><strong>Writers :</strong> Suresh Bandaru &middot; Saurabh Gupta &middot; Pranay Reddy Vanga</p>
-                <p><strong>Director :</strong>Sandip Reddy Vanga</p>
-                <p><strong>Stars :</strong> Ranbir Kapoor &middot; Anil Kapoor &middot; Bobby Deol</p>
-            </div>
-            <div className='cast'>
-                <h2 className='cast-title'><strong>Cast</strong></h2>
-                <ul className='cast-info'>
-                    <li>
-                        <a href='google.com/Ranbir-Kapoor'>
-                            <img className='cast-image' src='https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/ranbir-kapoor-2817-1691565170.jpg' />
-                            <h2 className='name'> Ranbir Kapoor </h2>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='google.com/Rashmika-Mandhana'>
-                            <img className='cast-image' src='https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/rashmika-mandanna-1076783-28-12-2016-12-20-39.jpg' />
-                            <h2 className='name'>Rashmika Mandhana</h2>
-                        </a>
-                    </li>
-                    <li>
-                        <a href='google.com/Anil-Kapoor'>
-                            <img className='cast-image' src='https://assets-in.bmscdn.com/iedb/artist/images/website/poster/large/anil-kapoor-176-12-09-2017-07-42-36.jpg' />
-                            <h2 className='name'>Anil Kapoor</h2>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
         </main>
+    );
+};
 
-
-    )
-}
 export default MovieDetails;
