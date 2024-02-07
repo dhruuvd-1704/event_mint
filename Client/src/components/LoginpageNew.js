@@ -4,14 +4,13 @@ import SignUpPage from './SignupPage';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const LoginPage = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
     });
+    const [invalidCredentials, setInvalidCredentials] = useState(false); // State to track invalid credentials
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -20,21 +19,21 @@ const LoginPage = () => {
             [name]: value,
         }));
     };
-    const {email,password}=formData;
-   
-        
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            // console.log('Sign Up Form submitted:', formData);
-            axios.post('http://localhost:5000/LoginpageNew',{email,password })
-            .then(result=>{console.log(result)
-            if(result.data==="Success"){
-                navigate('/') 
-            }})
-            // })
-            .catch(err=>console.log(err))
-        };
-   
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:5000/LoginpageNew', formData)
+            .then(result => {
+                console.log(result)
+                if (result.data === "Success") {
+                    navigate('/');
+                } else {
+                    setInvalidCredentials(true); // Set invalidCredentials state to true
+                }
+            })
+            .catch(err => console.log(err));
+    };
+
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="relative">
@@ -80,6 +79,9 @@ const LoginPage = () => {
                             Login
                         </button>
                     </form>
+                    {invalidCredentials && (
+                        <p className="text-red-500 text-center mt-2">Invalid credentials. Please try again.</p>
+                    )}
                     <p className="text-center mt-4 text-white">
                         New? <Link to="/SignupPage">Create an Account</Link>
                     </p>
@@ -90,4 +92,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-

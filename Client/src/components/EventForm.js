@@ -2,8 +2,8 @@ import React from 'react';
 
 const EventForm = () => {
     return (
-        <div className="  flex justify-center items-center ">
-            <div className="bg-transparent rounded-lg p-8 max-w-[40%]  shadow-lg backdrop-blur-[30px] w-[80%]  m-[30px] mt-[50px]">
+        <div className="  flex justify-center items-center w-[80%] ">
+            <div className="bg-transparent rounded-lg p-8 max-w-[100%]  shadow-lg backdrop-blur-[30px] w-[80%]  m-[30px] mt-[50px]">
                 <h1 className="text-3xl font-bold text-center text-white mb-8">Add Your Event</h1>
                 <form className="space-y-6">
                     <div>

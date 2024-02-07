@@ -22,6 +22,7 @@ import AddNFTPage from './components/AddNFTpage'
 import ProfilePage from './components/ProfilePage'
 import Sidebar from './components/Sidebar'
 import EventForm from './components/EventForm'
+import AddNFTForm from './components/AddNFTform'
 
 
 
@@ -39,31 +40,33 @@ const App = () => {
     'https://s1.ticketm.net/dam/a/7d5/97b67038-f926-4676-be88-ebf94cb5c7d5_1802151_TABLET_LANDSCAPE_LARGE_16_9.jpg'
   ];
   return (
-    // <>
-    //   <NavBar />
-    //   <Routes>
-    //     <Route exact path="/" element={<Home />} />
-    //     <Route path="/Events" element={<Events featuredSlides={featuredSlides} upcomingSlides={upcomingSlides} />} />
-    //     <Route path="/MarketPlace" element={<Marketplace />} />
-    //     <Route path="/LoginpageNew" element={<LoginPage />} />
-    //     <Route path="/SignUpPage" element={<SignUpPage />} />
-    //   </Routes>
-    //   <Footer />
-    // </>
-
-
     <>
-      <div className=' flex'>
-        <Sidebar />
-        <Routes>
-          <Route path='/Profile' element={<ProfilePage
-            name="John Doe"
-            email="johndoe@example.com"
-            walletAddress="0x123abc..." />} />
-        </Routes>
-
-      </div>
+      <NavBar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/Events" element={<Events featuredSlides={featuredSlides} upcomingSlides={upcomingSlides} />} />
+        <Route path="/MarketPlace" element={<Marketplace />} />
+        <Route path="/LoginpageNew" element={<LoginPage />} />
+        <Route path="/SignUpPage" element={<SignUpPage />} />
+      </Routes>
+      <Footer />
     </>
+
+
+    // <>
+    //   <div className=' flex'>
+    //     <Sidebar />
+    //     <Routes>
+    //       <Route path='/Profile' element={<ProfilePage
+    //         name="John Doe"
+    //         email="johndoe@example.com"
+    //         walletAddress="0x123abc..." />} />
+    //       <Route path='/AddNFTform' element={<AddNFTForm />} />
+    //       <Route path='/EventForm' element={<EventForm />} />
+    //     </Routes>
+
+    //   </div>
+    // </>
 
 
 
