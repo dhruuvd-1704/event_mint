@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState } from 'react'
 import NavBar from './components/NavBar'
 import Home from './components/Homepage'
 import Events from './components/Events'
@@ -35,6 +35,7 @@ const App = () => {
     // Your handleSubmit logic here
     console.log('Submitted data:', data);
   };
+
   return (
     <>
       <NavBar />
