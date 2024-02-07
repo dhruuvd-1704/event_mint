@@ -5,6 +5,8 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Animation from './Animation'
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useEffect } from 'react';
+import axios from 'axios'
 
 
 const Homepage = ({ children }) => {
@@ -20,6 +22,15 @@ const Homepage = ({ children }) => {
         triggerOnce: true, // Only trigger once
         threshold: 0.5, // 50% of the element is in view
     });
+    axios.defaults.withCredentials=true;
+    useEffect(()=>{
+        axios.get('http://localhost:5000/')
+            .then(result=>{console.log(result)
+            if(result.data!=="Success"){
+                navigate('/LoginpageNew') 
+            }}).catch(err=>console.log(err))
+
+    })
     return (
 
         <>

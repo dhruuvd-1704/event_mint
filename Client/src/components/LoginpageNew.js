@@ -22,7 +22,7 @@ const LoginPage = () => {
     };
     const {email,password}=formData;
    
-        
+        axios.defaults.withCredentials=true;
         const handleSubmit = (e) => {
             e.preventDefault();
             // console.log('Sign Up Form submitted:', formData);

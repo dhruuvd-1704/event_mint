@@ -5,6 +5,8 @@ const cors = require('cors')
 // const {v4: uuidv4}=require('uuid')
 // const {setUser}=require('./service/auth')
 const bcrypt = require('bcrypt')
+const jwt=require('jsonwebtoken')
+const cookieParser=require('cookie-parser')
 // const userRoute=require('./routes/user')
 // const handleUserSignup=require('./controllers/user')
 require('dotenv').config()
@@ -19,9 +21,14 @@ const User=require('./models/user')
 //     methods: 'GET,POST,PUT,DELETE', // Specify the allowed HTTP methods
 //     allowedHeaders: 'Content-Type,Authorization', // Specify the allowed request headers
 // }));
-app.use(cors())
+app.use(cors({
+    origin:["http://localhost:3000"],
+    methods:["GET","POST"], 
+    credentials:true
+}))
 
 app.use(express.json());
+app.use(cookieParser())
 
 
 
@@ -53,6 +60,24 @@ app.post('/SignUpPage', async (req,res)=>{
    
      })
 
+     const verifyUser = (req,res,next)=>{
+        const token=req.cookies.token;
+        // console.log(token);
+        if(!token){
+            return res.json("The token was not avalilable!")
+        }else{
+            jwt.verify(token,"jwt-secret-key",(err,decode)=>{
+                if(err) return res.json("token is wrong")
+                next();
+            })
+        }
+     }
+
+     app.get('/',verifyUser,(req,res)=>{
+        return res.json("Success")
+
+     })
+
 
 app.post('/LoginpageNew',async (req,res)=>{
     const {email,password}=req.body;
@@ -63,6 +88,8 @@ app.post('/LoginpageNew',async (req,res)=>{
           bcrypt.compare(password, user.password,(err,response)=>{
            
             if(response){
+                const token=jwt.sign({email:user.email},"jwt-secret-key",{expiresIn:"1d"})
+                res.cookie("token",token);
                 res.json("Success")
             }else{
                 res.json("The password is incorrect")
@@ -78,6 +105,9 @@ app.post('/LoginpageNew',async (req,res)=>{
 
     // if(!user){console.log("Invalid credentials")}                                                     
 })
+
+
+
 
 // )
 // app.post('/LoginpageNew', async (req, res) => {
