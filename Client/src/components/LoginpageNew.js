@@ -4,7 +4,7 @@ import SignUpPage from './SignupPage';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const LoginPage = ({ setUserLoggedIn }) => {
+const LoginPage = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -27,7 +27,7 @@ const LoginPage = ({ setUserLoggedIn }) => {
                 console.log(result)
                 if (result.data === "Success") {
                     navigate('/');
-                    setUserLoggedIn(true);
+                    
                 } else {
                     setInvalidCredentials(true); // Set invalidCredentials state to true
                 }
