@@ -4,13 +4,13 @@ import AddNFTForm from "./AddNFTform";
 
 const AddNFTPage = () => {
   const handleAddNFT = (formData) => {
-  
+
     console.log("Adding NFT:", formData);
 
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center  items-center h-screen">
       <AddNFTForm onSubmit={handleAddNFT} />
     </div>
   );

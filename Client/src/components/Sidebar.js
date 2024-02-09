@@ -37,7 +37,7 @@ const Sidebar = () => {
                 }}
             >
                 <div className="flex items-center justify-between p-4">
-                    <span className="text-lg font-bold mb-12">Dashboard</span>
+                    <span className="text-lg font-bold mb-12 text-gray-800">Dashboard</span>
                 </div>
             </motion.div>
             <motion.div

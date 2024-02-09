@@ -85,7 +85,7 @@ const Homepage = ({ children }) => {
                         {children}
                         <div className='mid-info'>
                             <h2>Revolutionise your ticketing with NFTs</h2>
-                            <h2>- Sell on SeatlabNFT Today!</h2>
+                            <h2>- Sell on EventMint Today!</h2>
 
 
                         </div>

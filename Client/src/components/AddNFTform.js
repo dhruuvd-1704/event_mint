@@ -42,8 +42,8 @@ const AddNFTForm = ({ onSubmit }) => {
   };
 
   return (
-    <div className="flex items-center">
-      <section className="flex justify-center items-center ml-[500px]">
+    <div className="flex justify-center m-36  space-x-4">
+      <section className="flex justify-center items-center ">
         <form
           onSubmit={handleSubmit}
           className="bg-transparent rounded-lg p-8 max-w-[100%] shadow-lg backdrop-blur-[30px] w-[80%] "
