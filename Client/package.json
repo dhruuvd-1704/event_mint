@@ -41,7 +41,8 @@
     "sort-by": "^1.2.0",
     "source-map-loader": "^5.0.0",
     "styled-components": "^6.1.8",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "web3": "^4.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -12,6 +12,8 @@ const cookieParser=require('cookie-parser')
 require('dotenv').config()
 const connectDB=require('./db/connect')
 const User=require('./models/user')
+const multer = require('multer')
+const axios = require('axios')
  
 
 // app.use(userRoute)
@@ -104,6 +106,52 @@ app.post('/LoginpageNew',async (req,res)=>{
     .catch(err=>res.json(err))
 
     // if(!user){console.log("Invalid credentials")}                                                     
+})
+
+
+const upload = multer({
+    limits:{
+        fileSize:1000000
+    }
+})
+
+const starton = axios.create({
+    baseURL:"https://api.starton.io/v3",
+    headers:{
+        "x-api-key":"sk_live_0b880bdb-99ba-4537-9582-331fc09e5556"
+    }
+})
+
+app.post('/AddNFTform',cors(),upload.single('file'),async(req,res)=>{
+    let data = new FormData();
+    const blob = new Blob([req.file.buffer],{type:req.file.mimetype});
+    data.append("file",blob,{filename:req.file.originalname})
+data.append("isSync","true")
+
+async function uploadImageOnIpfs(){
+    const ipfsImg=await starton.post("ipfs/file",data,{
+        headers: {"Content-Type":`multipart/form-data; boundary=${data._boundary}`}
+    })
+    return ipfsImg.data ;
+}
+async function uploadMetadataOnIpfs(imgCid){
+    const metadataJson={
+        name:`A wonderful day`,
+        description:`Probably the most awesome nft ever created !`,
+        image:`ipfs://ipfs/${imgCid}`
+    }
+    const ipfsMetadata=await starton.post("/ipfs/json",{
+        name:"My NFT metadata Json",
+        constent: metadataJson,
+        isSync: true
+    })
+    return ipfsMetadata.data;
+}
+
+const ipfsImgData=await uploadImageOnIpfs();
+const ipfsMetadata=await uploadMetadataOnIpfs(ipfsImgData.cid);
+console.log(ipfsImgData,ipfsMetadata)
+res.status(201).json({cid:ipfsImgData.id})
 })
 
 

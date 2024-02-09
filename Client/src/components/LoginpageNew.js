@@ -19,23 +19,22 @@ const LoginPage = ({ setUserLoggedIn }) => {
             [name]: value,
         }));
     };
-    const {email,password}=formData;
-   
-        axios.defaults.withCredentials=true;
-        const handleSubmit = (e) => {
-            e.preventDefault();
-            // console.log('Sign Up Form submitted:', formData);
-            axios.post('http://localhost:5000/LoginpageNew',{email,password })
-            .then(result=>{console.log(result)
-            if(result.data==="Success"){
-                navigate('/') 
-            }else {
-                setInvalidCredentials(true); // Set invalidCredentials state to true
-            }})
-            // })
-            .catch(err=>console.log(err))
-        };
-   
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post('http://localhost:5000/LoginpageNew', formData)
+            .then(result => {
+                console.log(result)
+                if (result.data === "Success") {
+                    navigate('/');
+                    setUserLoggedIn(true);
+                } else {
+                    setInvalidCredentials(true); // Set invalidCredentials state to true
+                }
+            })
+            .catch(err => console.log(err));
+    };
+
     return (
         <div className="flex items-center justify-center min-h-screen">
             <div className="relative">
