@@ -25,7 +25,7 @@ const SignUpPage = () => {
         // console.log('Sign Up Form submitted:', formData);
         axios.post('http://localhost:5000/SignUpPage',{username,email,password })
         .then(result=>{console.log(result)
-        navigate('/')})
+        navigate('/LoginpageNew')})
         .catch(err=>console.log(err))
     };
 

@@ -5,6 +5,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom';
 import Animation from './Animation'
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import axios from "axios"
 
 
 const Homepage = ({ children }) => {
@@ -20,6 +21,13 @@ const Homepage = ({ children }) => {
         triggerOnce: true, // Only trigger once
         threshold: 0.5, // 50% of the element is in view
     });
+    // axios.defaults.withCredentials=true;
+    // axios.get('http://localhost:5000/')
+    // .then(result=>{console.log(result)
+    // if(result.data!=="Success"){
+    //   navigate('/LoginpageNew')
+    // }
+// })
     return (
 
         <>
@@ -85,7 +93,7 @@ const Homepage = ({ children }) => {
                         {children}
                         <div className='mid-info'>
                             <h2>Revolutionise your ticketing with NFTs</h2>
-                            <h2>- Sell on SeatlabNFT Today!</h2>
+                            <h2>- Sell on EventMint Today!</h2>
 
 
                         </div>

@@ -62,7 +62,7 @@ const NavBar = () => {
                         <ul>
 
                             <li>
-                                <Link to='/LoginpageNew' className='profile-main'>
+                                <Link to='/Profile' className='profile-main'>
                                     <img className='profile-icon' src={profile} alt="Profile Icon" /> Profile
                                 </Link>
                             </li>
