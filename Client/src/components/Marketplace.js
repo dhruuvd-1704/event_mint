@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from 'react-router-dom';
 import NFTItem from "./NFTItem";
 import Web3 from "web3";
 import abi from '../ABI.json';
 import { useNavigate } from "react-router-dom";
 import axios from "axios"
 
-const nftItems = [
+const initialNFTs = [
   {
     imageSrc: "https://i.seadn.io/s/raw/files/21c89fb23006c3d424bbe9304b0f22c4.png?auto=format&dpr=1&w=512",
     title: "Zodiac #001",
@@ -41,10 +42,10 @@ const nftItems = [
     title: "Zodiac #006",
     price: "0.111",
   }
-  // Add more NFT items as needed..
 ];
 
-const Marketplace = () => {
+const Marketplace = ({ existingNFTs, onPurchaseNFT }) => {
+  const location = useLocation();
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [accounts, setAccounts] = useState([]);
@@ -53,10 +54,9 @@ const Marketplace = () => {
   useEffect(() => {
     const initWeb3 = async () => {
       try {
-        // Connect to MetaMask or other web3 provider
         if (window.ethereum) {
           const web3Instance = new Web3(window.ethereum);
-          await window.ethereum.enable(); // Request account access if needed
+          await window.ethereum.enable();
           setWeb3(web3Instance);
 
           const networkId = await web3Instance.eth.net.getId();
@@ -77,25 +77,23 @@ const Marketplace = () => {
     initWeb3();
   }, []);
 
+  // Function to handle purchasing NFT
   const purchaseNFT = async (tokenId, price) => {
     try {
       if (contract) {
-        // Helper function to clean up the price string
         const convertToWei = (amount) => {
-          // Remove dollar sign and comma
           const cleanedAmount = amount.replace(/[$,]/g, "");
-          // Convert to wei
           return web3.utils.toWei(cleanedAmount, "ether");
         };
-        // Your purchase logic here
         const result = await contract.methods.createMarketSale(tokenId).send({
           from: accounts[0],
           value: convertToWei(price),
         });
 
         console.log("NFT Purchased successfully!", result);
-      } else {
-        console.error("Contract not initialized");
+        
+        // Update purchasedNFTs in the parent component
+        onPurchaseNFT({ tokenId, price, imageSrc: initialNFTs[tokenId].imageSrc });
       }
     } catch (error) {
       console.error("Error purchasing NFT:", error);
@@ -111,14 +109,24 @@ const Marketplace = () => {
   return (
     <main>
       <div className="mt-20 bg-gray-900 shadow-white h-72 shadow-sm">
-        <h1 className="text-center pt-24 text-white font-bold text-7xl drop-shadow-xl shadow-white">
+        <h1 className="text-center pt-24 text-white font-bold text-4xl sm:text-7xl drop-shadow-xl shadow-white">
           NFT. MARKETPLACE
         </h1>
       </div>
 
-      <main className="place-items-center grid grid-cols-5 ml-9 mr-9 gap-8 mt-24 mb-24">
-        {/* Iterate over the list of NFT items */}
-        {nftItems.map((item, index) => (
+      <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ml-9 mr-9 gap-8 mt-8 mb-8">
+        {/* Map over existingNFTs */}
+        {existingNFTs.map((item, index) => (
+          <NFTItem
+            key={index}
+            imageSrc={item.imageURL}
+            title={item.title}
+            price={item.price}
+            purchase={() => purchaseNFT(index, item.price)}
+          />
+        ))}
+        {/* Map over initialNFTs */}
+        {initialNFTs.map((item, index) => (
           <NFTItem
             key={index}
             imageSrc={item.imageSrc}

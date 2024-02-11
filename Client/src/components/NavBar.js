@@ -8,7 +8,7 @@ import event from './event.png'
 import marketplace from './ethereum.png'
 import profile from './profile.png'
 import { Link } from 'react-router-dom'
-import logo from './EventMint_logo.png'
+import logo from './EventMint1_logo.png'
 import LoginPage from './LoginpageNew'
 
 const NavBar = () => {

@@ -10,10 +10,10 @@ const NFTItem = ({ imageSrc, title, price ,purchase}) => {
         <div className="flex-grow flex flex-col justify-between bg-gradient-to-t from-black to-transparent">
           <div className="p-4">
             <h1 className="font-bold text-white size-auto">{title}</h1>
-            <p className="text-white font-bold font-mono">{price} ETH</p>
+            <p className="text-white font-bold font-mono">{price} MATIC</p>
           </div>
           <button className="font-semibold text-white p-3 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-500 transition-opacity duration-300 opacity-0 group-hover:opacity-100 w-full" onClick={purchase}>
-            Book Ticket
+            Buy NFT
           </button>
         </div>
       </div>
