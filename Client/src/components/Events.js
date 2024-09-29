@@ -1,54 +1,52 @@
-import React from "react";
-import Sliderss from "./data";
-import "./navbar.css";
-import { useNavigate } from "react-router-dom";
-import { motion } from 'framer-motion'
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import EventItem from './EventItem'; // Import the new EventItem component
 
-const EventsPage = ({ featuredSlides, upcomingSlides }) => {
+const EventsPage = () => {
+    const [events, setEvents] = useState([]);
     const navigate = useNavigate();
 
-    const navigateToMap = () => {
-        navigate('/map');
-    }
+    useEffect(() => {
+        fetchEvents();
+    }, []);
+
+    const fetchEvents = async () => {
+        try {
+            const response = await axios.get('http://localhost:5000/events');
+            setEvents(response.data);
+        } catch (error) {
+            console.error("Error fetching events:", error);
+        }
+    };
+
+    const handleEventClick = (id) => {
+        navigate(`/event/${id}`); // Redirect to the detailed event page
+    };
 
     return (
-        <main className="bg-transparent text-white min-h-screen">
-            <div className="container mx-auto py-20">
-                <div className="text-center">
-                    <h2 className="text-3xl font-bold mb-6">Featured Events</h2>
-                    <div className="border-b border-white w-24 mx-auto mb-8"></div>
-                </div>
-                <div className="flex justify-center mb-12">
-                    {/* Ensure that Sliderss receives an array of image URLs */}
-                    <Sliderss slides={featuredSlides.map(slide => slide.imageUrl)} />
-                </div>
+        <main>
+            <div className="mt-20 bg-gray-900 shadow-white h-72 shadow-sm">
+                <h1 className="text-center pt-24 text-white font-bold text-4xl sm:text-7xl drop-shadow-xl shadow-white">
+                    Upcoming Events
+                </h1>
             </div>
-            <div className="bg-transparent py-20 m-2">
-                <div className="container mx-auto">
-                    <div className="text-center">
-                        <h2 className="text-3xl font-bold mb-6">Coming Soon</h2>
-                        <div className="border-b border-white w-24 mx-auto mb-8 m-4"></div>
-                    </div>
-                    <div className="pt-4 box-border m-auto flex flex-col sm:flex-row items-center justify-center gap-8">
-                        {/* Ensure that Sliderss receives an array of image URLs */}
-                  <Sliderss slides={upcomingSlides} />
-                  <Sliderss slides={upcomingSlides} />
-                        <Sliderss slides={upcomingSlides} />
-                    </div>
-                    {/* upcomingSlides.map(slide => slide.imageUrl)} */}
-                    <div className="flex justify-center mt-14">
-                        <motion.button
-                            whileHover={{ scale: 1.2 }}
-                            onHoverStart={e => { }}
-                            onHoverEnd={e => { }}
-                        >
-                            <b className=" bg-black opacity-70 text-white size-5 text-center  pt-4 pb-4 rounded-md hover:opacity-100 hover:cursor-pointer pr-10 pl-10 " onClick={navigateToMap}>
-                                Map
-                            </b>
-                        </motion.button>
-                    </div>
-                </div>
-            </div>
+
+            <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ml-9 mr-9 gap-8 mt-8 mb-8">
+                {events.length > 0 ? (
+                    events.map(event => (
+                        <EventItem
+                            key={event._id}
+                            id={event._id} // Pass the ID
+                            imageSrc={event.imageUrl}
+                            title={event.eventName}
+                            onClick={() => handleEventClick(event._id)} // Handle click
+                        />
+                    ))
+                ) : (
+                    <p className="text-white text-center">No events available.</p>
+                )}
+            </main>
         </main>
     );
 };

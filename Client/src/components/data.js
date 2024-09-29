@@ -1,63 +1,35 @@
-
-import React from "react"
+import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import { useState } from "react";
-
-
 
 const Sliderss = ({ slides }) => {
-    let [current, setCurrent] = useState(0)
+    const [current, setCurrent] = useState(0);
+    const length = slides.length;
 
-    const previousSlide = () => {
-        if (current === 0) {
-            setCurrent(slides.length - 1)
-        }
-        else {
-            setCurrent(current - 1)
-        }
-    }
     const nextSlide = () => {
-        if (current === slides.length - 1) {
-            setCurrent(0)
-        }
-        else {
-            setCurrent(current + 1)
-        }
+        setCurrent(current === length - 1 ? 0 : current + 1);
+    };
+
+    const prevSlide = () => {
+        setCurrent(current === 0 ? length - 1 : current - 1);
+    };
+
+    if (!Array.isArray(slides) || slides.length <= 0) {
+        return null;
     }
 
-
-
-
-
-
-    return (<div className="overflow-hidden relative">
-        <div className="flex transition ease-out duration-500 "
-            style={{ transform: `translateX(-${current * 100}%)`, }}
-        >
-            {slides.map((s) => {
-                return (<img className="rounded-md" src={s}></img>)
-            })}</div>
-        <div className="absolute top-0 h-full w-full justify-between items-center flex text-3xl text-white px-10 opacity-45">
-            <button onClick={previousSlide}>
-                <FaChevronLeft></FaChevronLeft>
-            </button>
-            <button onClick={nextSlide}>
-                <FaChevronRight></FaChevronRight>
-            </button>
+    return (
+        <div className="relative">
+            <FaChevronLeft onClick={prevSlide} className="absolute left-0 top-1/2 transform -translate-y-1/2 cursor-pointer" />
+            <FaChevronRight onClick={nextSlide} className="absolute right-0 top-1/2 transform -translate-y-1/2 cursor-pointer" />
+            {slides.map((slide, index) => (
+                <div key={index} className={index === current ? 'opacity-100' : 'opacity-0'}>
+                    {index === current && (
+                        <img src={slide} alt="Event" className="w-full h-auto" />
+                    )}
+                </div>
+            ))}
         </div>
+    );
+};
 
-        <div className="absolute bottom-0 py-4 flex justify-center gap-3 w-full  ">
-            {slides.map((s, i) => {
-                return (
-                    <div key={"circle" + i} className={`rounded-full w-5 h-5 ${i == current ? "bg-white" : "bg-gray-400"}
-       
-    `}></div>
-                )
-            })}
-        </div>
-
-
-    </div>)
-
-}
 export default Sliderss;

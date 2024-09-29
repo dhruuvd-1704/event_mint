@@ -4,52 +4,14 @@ import NFTItem from "./NFTItem";
 import Web3 from "web3";
 import abi from '../ABI.json';
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
-const initialNFTs = [
-  {
-    imageSrc: "https://i.seadn.io/s/raw/files/21c89fb23006c3d424bbe9304b0f22c4.png?auto=format&dpr=1&w=512",
-    title: "Zodiac #001",
-    price: "0.12",
-  },
-  {
-    imageSrc: "https://i.seadn.io/gcs/files/db2989d36f2b7c40c019a0cceb7b3a71.png?auto=format&dpr=1&w=512",
-    title: "Zodiac #002",
-    price: "0.04",
-  },
-  {
-    imageSrc: "https://i.seadn.io/s/raw/files/22085c96c432ffe169c3c1dec3c5097d.jpg?auto=format&dpr=1&w=512",
-    title: "Negative 1289",
-    price: "0.10",
-  },
-  {
-    imageSrc: "https://i.seadn.io/gcs/files/9b32deeb6b59d51f1ae009af70ca56ad.png?auto=format&dpr=1&w=512",
-    title: "Zodiac #003",
-    price: "0.002",
-  },
-  {
-    imageSrc: "https://i.seadn.io/gcs/files/fb402688a93652f4bebb017e6dd29f6f.png?auto=format&dpr=1&w=512",
-    title: "Zodiac #004",
-    price: "0.24",
-  },
-  {
-    imageSrc: "https://i.seadn.io/s/raw/files/b1182b0883a4972e125fc1f2e159e481.png?auto=format&dpr=1&w=512",
-    title: "Zodiac #005",
-    price: "0.10997",
-  },
-  {
-    imageSrc: "https://i.seadn.io/gcs/files/1951e48af9d595c231d553571acd152c.png?auto=format&dpr=1&w=512",
-    title: "Zodiac #006",
-    price: "0.111",
-  }
-];
-
-const Marketplace = ({ existingNFTs, onPurchaseNFT }) => {
-  const location = useLocation();
+const Marketplace = ({ onPurchaseNFT }) => {
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [accounts, setAccounts] = useState([]);
-  const navigate=useNavigate()
+  const [nfts, setNfts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const initWeb3 = async () => {
@@ -77,59 +39,79 @@ const Marketplace = ({ existingNFTs, onPurchaseNFT }) => {
     initWeb3();
   }, []);
 
-  // Function to handle purchasing NFT
-  const purchaseNFT = async (tokenId, price) => {
+  // Function to fetch NFTs from the backend
+  const fetchNFTs = async () => {
     try {
-      if (contract) {
-        const convertToWei = (amount) => {
-          const cleanedAmount = amount.replace(/[$,]/g, "");
-          return web3.utils.toWei(cleanedAmount, "ether");
-        };
-        const result = await contract.methods.createMarketSale(tokenId).send({
-          from: accounts[0],
-          value: convertToWei(price),
-        });
-
-        console.log("NFT Purchased successfully!", result);
-        
-        // Update purchasedNFTs in the parent component
-        onPurchaseNFT({ tokenId, price, imageSrc: initialNFTs[tokenId].imageSrc });
-      }
+      const response = await axios.get('http://localhost:5000/nfts');
+      setNfts(response.data);
     } catch (error) {
-      console.error("Error purchasing NFT:", error);
+      console.error("Error fetching NFTs:", error);
     }
   };
-  axios.defaults.withCredentials=true;
-    axios.get('http://localhost:5000/MarketPlace')
-    .then(result=>{console.log(result)
-    if(result.data!=="Success"){
-      navigate('/LoginpageNew')
+
+  // Fetch NFTs when the component mounts
+  useEffect(() => {
+    fetchNFTs();
+  }, []);
+
+  // Function to handle purchasing NFT
+// Function to handle purchasing NFT
+const purchaseNFT = async (tokenId, price) => {
+    try {
+        if (contract) {
+            const convertToWei = (amount) => {
+                // Ensure amount is a string before calling replace
+                const cleanedAmount = String(amount).replace(/[$,]/g, "");
+                return web3.utils.toWei(cleanedAmount, "ether");
+            };
+            const result = await contract.methods.createMarketSale(tokenId).send({
+                from: accounts[0],
+                value: convertToWei(price), // Make sure price is correctly formatted
+            });
+
+            console.log("NFT Purchased successfully!", result);
+            
+            // Fetch updated NFTs after purchase
+            fetchNFTs();
+            onPurchaseNFT({ tokenId, price });
+        }
+    } catch (error) {
+        console.error("Error purchasing NFT:", error);
     }
-})
+};
+
+
+  // Check if the user is logged in
+  axios.defaults.withCredentials = true;
+  useEffect(() => {
+    const checkUserLoggedIn = async () => {
+      try {
+        const result = await axios.get('http://localhost:5000/MarketPlace');
+        if (result.data !== "Success") {
+          navigate('/LoginpageNew');
+        }
+      } catch (error) {
+        console.error("Error checking login:", error);
+      }
+    };
+
+    checkUserLoggedIn();
+  }, [navigate]);
+
   return (
     <main>
       <div className="mt-20 bg-gray-900 shadow-white h-72 shadow-sm">
         <h1 className="text-center pt-24 text-white font-bold text-4xl sm:text-7xl drop-shadow-xl shadow-white">
-          NFT. MARKETPLACE
+          NFT MARKETPLACE
         </h1>
       </div>
 
       <main className="place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 ml-9 mr-9 gap-8 mt-8 mb-8">
-        {/* Map over existingNFTs */}
-        {existingNFTs.map((item, index) => (
+        {/* Map over NFTs stored in state */}
+        {nfts.map((item, index) => (
           <NFTItem
             key={index}
             imageSrc={item.imageURL}
-            title={item.title}
-            price={item.price}
-            purchase={() => purchaseNFT(index, item.price)}
-          />
-        ))}
-        {/* Map over initialNFTs */}
-        {initialNFTs.map((item, index) => (
-          <NFTItem
-            key={index}
-            imageSrc={item.imageSrc}
             title={item.title}
             price={item.price}
             purchase={() => purchaseNFT(index, item.price)}

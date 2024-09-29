@@ -22,6 +22,8 @@ import axios from 'axios'
  // import minter from './components/minter'
 import Upload from './components/FileUpload'
 import Map from './components/map'
+import EventsPage from './components/Events';
+import EventDetail from './components/EventDetail';
 
 const App = () => {
  const [featuredSlides, setFeaturedSlides] = useState([]);
@@ -107,6 +109,7 @@ const App = () => {
            <Route path="/EventForm" element={<EventForm onEventSubmit={handleEventSubmit} />} />
           <Route path='/Collectibles' element={<Collectibles purchasedNFTs={purchasedNFTs} />} />
           <Route path='/Upload' element={<Upload onSubmit={handleSubmit}/>}/>
+          <Route path="/event/:id" element={<EventDetail />} /> 
         </Routes>
      
      
