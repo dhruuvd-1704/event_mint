@@ -43,7 +43,7 @@ const Homepage = ({ children }) => {
                     >
                         <div className="text-8xl font-bold pt-20 text-center text-white m-3">
                             <div className='section bg1'>
-                                WELCOME TO NFTFY
+                                WELCOME TO EventMint
                             </div>
                         </div>
 
@@ -93,7 +93,7 @@ const Homepage = ({ children }) => {
                         {children}
                         <div className='mid-info'>
                             <h2>Revolutionise your ticketing with NFTs</h2>
-                            <h2>- Sell on NFTfy Today!</h2>
+                            <h2>- Sell on EventMint Today!</h2>
 
 
                         </div>

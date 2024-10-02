@@ -58,7 +58,7 @@ export default function App() {
       <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}>
         © 2024 Copyright:
         <a className='text-white' href='https://google.com/'>
-          NFTfy.com
+          EventMint.com
         </a>
       </div>
     </MDBFooter>

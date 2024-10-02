@@ -142,7 +142,6 @@ const App = () => {
                     {/* Map Route */}
                     <Route path="/map" element={<Map />} />
                 </Routes>
-                <YourTickets tickets={tickets} /> {/* Add YourTickets component here */}
             </div>
             <Footer />
         </>

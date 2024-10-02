@@ -59,18 +59,17 @@ const verifyUser = (req, res, next) => {
 
     if (!token) {
         return res.json("The token was not available!");
-    } else {
-        jwt.verify(token, "jwt-secret-key", (err, decode) => {
-            if (err) {
-                console.log("Token verification error:", err); // Log verification error
-                return res.json("Token is wrong");
-            }
-            console.log("Decoded token:", decode); // Log decoded token
-            req.user = decode;
-            res.cookie('userId', decode.id); // Ensure you are assigning decoded token to req.user
-            next();
-        });
-    }
+    } 
+    jwt.verify(token, "jwt-secret-key", (err, decode) => {
+        if (err) {
+            console.log("Token verification error:", err); // Log verification error
+            return res.json("Token is wrong");
+        }
+        console.log("Decoded token:", decode); // Log decoded token
+        req.user = decode;
+        res.cookie('userId', decode.id); // Ensure you are assigning decoded token to req.user
+        next();
+    });
 };
 
 
@@ -99,31 +98,77 @@ const authMiddleware = async (req, res, next) => {
     }
 };
 
-app.get('/Profile', verifyUser, async (req, res) => {
-    return res.json("Success");
-});
+app.get("/Profile", verifyUser, async (req, res) => {
+    try {
+      // Access user data from the request object
+      const userData = req.user; // This should be populated by verifyUser middleware
+  
+      if (!userData) {
+        return res.status(404).json({ message: "User not found" });
+      }
+  
+      // Send the user data as a response
+      return res.status(200).json({ msg: "Success", user: userData });
+    } catch (error) {
+      // Handle any errors that occur
+      console.error("Error in retrieving user profile:", error);
+      return res.status(500).json({ error: "Internal Server Error" });
+    }
+  });
 
 // User login
 app.post('/LoginpageNew', async (req, res) => {
     const { email, password } = req.body;
-    const user = await User.findOne({ email: email })
-        .then(user => {
-            if (user) {
-                bcrypt.compare(password, user.password, (err, response) => {
-                    if (response) {
-                        const token = jwt.sign({ username: user.username, email: user.email , _id:user._id}, "jwt-secret-key", { expiresIn: "1d" });
-                        res.cookie("token", token);
-                        res.json({ msg: "Success", email: email });
-                    } else {
-                        res.json("The password is incorrect");
-                    }
-                });
+    const user = await User.findOne({ email: email });
+    
+    if (user) {
+        bcrypt.compare(password, user.password, (err, response) => {
+            if (response) {
+                const token = jwt.sign({ username: user.username, email: user.email, _id: user._id }, "jwt-secret-key", { expiresIn: "1d" });
+                res.cookie("token", token);
+                console.log("User ID sent:", user._id); // Debugging line
+                res.json({ msg: "Success", email: email, userId: user._id }); // Include userId
             } else {
-                res.json("No record existed");
+                res.json("The password is incorrect");
             }
-        })
-        .catch(err => res.json(err));
+        });
+    } else {
+        res.json("No record existed");
+    }
 });
+
+
+// app.post("/LoginpageNew", async (req, res) => {
+//     const { email, password } = req.body;
+  
+//     try {
+//       const user = await User.findOne({ email: email });
+  
+//       if (!user) {
+//         return res.json("No record existed");
+//       }
+  
+//       const isMatch = await bcrypt.compare(password, user.password);
+  
+//       if (!isMatch) {
+//         return res.json("The password is incorrect");
+//       }
+  
+//       // Create JWT token with user's email and username
+//       const token = jwt.sign(
+//         { _id: user._id, username: user.username, email: user.email },
+//         "jwt-secret-key",
+//         { expiresIn: "1d" }
+//       );
+  
+//       res.cookie("token", token); // Store token in cookie (can also use localStorage on the client side)
+//       return res
+//         .status(200)
+//         .json({ msg: "Success", email: user.email, id: user._id });
+//     } catch (err) {
+//       return res.status(500).json({ error: err.message });
+//     }
+//   });
 
 // Multer setup for file uploads
 const upload = multer({
@@ -310,7 +355,7 @@ app.post('/book-tickets', verifyUser, async (req, res) => {
 // Endpoint to get booked tickets for the authenticated user
 app.get('/my-tickets', verifyUser, async (req, res) => {
     try {
-        const tickets = await Ticket.find({ userId: req.user._id }).populate('eventId');
+        const tickets = await Ticket.find({ userId: req.user._id }).populate('eventId'); // Ensure proper population
         res.status(200).json(tickets);
     } catch (error) {
         console.error("Error fetching tickets:", error);
@@ -338,3 +383,8 @@ app.get('/tickets', async (req, res) => {
     }
 });
 
+
+app.post('/logout', (req, res) => {
+    res.clearCookie('token'); // Clear the token cookie
+    return res.status(200).json({ msg: 'Successfully logged out' });
+});

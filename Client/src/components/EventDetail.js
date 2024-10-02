@@ -7,15 +7,15 @@ const EventDetail = ({ onBookNow }) => {
     const [event, setEvent] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [userId, setUserId] = useState(null);
+
     useEffect(() => {
-        fetchEventDetail();
-    }, [id]);
-    useEffect(() => {
-        // Retrieve userId from local storage
+        // Retrieve userId from local storage once on component mount
         const storedUserId = localStorage.getItem('userId');
-        setUserId(storedUserId); // Set userId from local storage
-        fetchEventDetail();
-    }, [id]);
+        console.log('Retrieved userId:', storedUserId); // Debugging line
+        setUserId(storedUserId);
+
+        fetchEventDetail(); // Call this function to fetch event details
+    }, []);
 
     const fetchEventDetail = async () => {
         try {
@@ -36,33 +36,27 @@ const EventDetail = ({ onBookNow }) => {
 
     const handleBookNow = async () => {
         if (event) {
-            console.log(event._id);
-            
             const ticketDetails = {
-                eventId: event._id, // Use event ID here
+                eventId: event._id,
                 quantity: 1,
                 totalPrice: event.ticketPrice,
-                userId:userId
-                // Assuming the event has a ticket price
+                userId: userId, // Ensure this is set correctly
             };
-    
-            // Log the ticketDetails object to the console
-            console.log('Ticket Details:', ticketDetails);
+
+            console.log('Ticket Details:', ticketDetails); // Debugging line
             
             try {
                 const response = await axios.post('http://localhost:5000/book-tickets', ticketDetails, {
-                    withCredentials: true // Ensure credentials are included
+                    withCredentials: true
                 });
-                console.log(response);
+                alert("Your Ticket is Booked!");
                 console.log('Ticket booked:', response.data);
-                onBookNow(ticketDetails); // Update state in App.js if needed
+                onBookNow(ticketDetails);
             } catch (error) {
                 console.error("Error booking ticket:", error);
             }
         }
     };
-    
-    
 
     if (!event) return <p className="text-center text-white">Loading...</p>;
 
@@ -86,6 +80,10 @@ const EventDetail = ({ onBookNow }) => {
                     <span className="block bg-gray-800 bg-opacity-20 backdrop-blur-[30px] p-2 rounded-lg mt-2">{event.eventLocation}</span>
                 </p>
                 <p className="text-lg">
+                    <strong>Price:</strong>
+                    <span className="block bg-gray-800 bg-opacity-20 backdrop-blur-[30px] p-2 rounded-lg mt-2">{event.ticketPrice}</span>
+                </p>
+                <p className="text-lg">
                     <strong>Start Date:</strong>
                     <span className="block bg-gray-800 bg-opacity-20 backdrop-blur-[30px] p-2 rounded-lg mt-2">{new Date(event.startDate).toLocaleDateString()}</span>
                 </p>
@@ -97,7 +95,7 @@ const EventDetail = ({ onBookNow }) => {
             <div className="mt-8 text-center">
                 <button 
                     className="bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 hover:bg-blue-600"
-                    onClick={handleBookNow} // Attach the booking function
+                    onClick={handleBookNow}
                 >
                     Book Now
                 </button>
