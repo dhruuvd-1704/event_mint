@@ -12,7 +12,8 @@ const EventForm = () => {
         ticketPrice: '',
         startDate: '',
         endDate: '',
-        eventDescription: ''
+        eventDescription: '',
+        receiverAddress: ''  // Add field for receiver address
     });
 
     const handleChange = (e) => {
@@ -37,13 +38,13 @@ const EventForm = () => {
             formData.append(key, eventData[key]);
         });
         try {
-            const response = await axios.post('http://localhost:5000/events', formData, {
+            const response = await axios.post('http://localhost:5000/upload-nft', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
             console.log("Response from server:", response.data);
-            alert('Event submitted successfully!');
+            alert('NFT minted successfully!');
             setEventData({
                 image: null,
                 eventName: '',
@@ -54,11 +55,12 @@ const EventForm = () => {
                 ticketPrice: '',
                 startDate: '',
                 endDate: '',
-                eventDescription: ''
+                eventDescription: '',
+                receiverAddress: ''  // Reset receiver address
             });
         } catch (error) {
             console.error('Error:', error.response || error.message);
-            alert('An error occurred while submitting the event.');
+            alert('An error occurred while minting the NFT.');
         }
     };
 
@@ -111,6 +113,10 @@ const EventForm = () => {
                     <div>
                         <label htmlFor="eventDescription" className="block text-white font-medium">Event Description</label>
                         <textarea id="eventDescription" value={eventData.eventDescription} onChange={handleChange} className="w-full bg-transparent border-b-2 border-gray-300 py-2 px-4 focus:outline-none focus:border-blue-500" required></textarea>
+                    </div>
+                    <div>
+                        <label htmlFor="receiverAddress" className="block text-white font-medium">Receiver Address</label>
+                        <input type="text" id="receiverAddress" value={eventData.receiverAddress} onChange={handleChange} className="w-full bg-transparent border-b-2 border-gray-300 py-2 px-4 focus:outline-none focus:border-blue-500" required />
                     </div>
                     <div className='flex justify-center'>
                         <button type="submit" className="bg-blue-500 text-white rounded-md py-2 px-6 hover:bg-blue-600 transition duration-300 ease-in-out">Submit</button>

@@ -13,11 +13,12 @@ require('dotenv').config();
 const connectDB = require('./db/connect');
 const User = require('./models/user');
 const Event = require('./models/events');
+const Ticket = require('./models/Ticket');
 
 const bodyParser = require('body-parser');
 app.use(cors({
     origin: ["http://localhost:3000"],
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "OPTIONS"],
     credentials: true
 }));
 
@@ -27,6 +28,7 @@ app.use(bodyParser.json({ limit: '10mb' })); // Adjust size as needed
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 const port = process.env.PORT || 5000;
+// Add this line
 
 const start = async () => {
     try {
@@ -53,15 +55,24 @@ app.post('/SignUpPage', async (req, res) => {
 // Middleware to verify user
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
+    console.log("Token received:", token); // Log the received token
+
     if (!token) {
         return res.json("The token was not available!");
     } else {
         jwt.verify(token, "jwt-secret-key", (err, decode) => {
-            if (err) return res.json("Token is wrong");
+            if (err) {
+                console.log("Token verification error:", err); // Log verification error
+                return res.json("Token is wrong");
+            }
+            console.log("Decoded token:", decode); // Log decoded token
+            req.user = decode;
+            res.cookie('userId', decode.id); // Ensure you are assigning decoded token to req.user
             next();
         });
     }
 };
+
 
 app.get('/', verifyUser, (req, res) => {
     return res.json("Success");
@@ -100,7 +111,7 @@ app.post('/LoginpageNew', async (req, res) => {
             if (user) {
                 bcrypt.compare(password, user.password, (err, response) => {
                     if (response) {
-                        const token = jwt.sign({ username: user.username, email: user.email }, "jwt-secret-key", { expiresIn: "1d" });
+                        const token = jwt.sign({ username: user.username, email: user.email , _id:user._id}, "jwt-secret-key", { expiresIn: "1d" });
                         res.cookie("token", token);
                         res.json({ msg: "Success", email: email });
                     } else {
@@ -208,6 +219,7 @@ app.get('/events', async (req, res) => {
     try {
         const events = await Event.find();
         res.status(200).json(events);
+        
     } catch (error) {
         res.status(500).json({ error: "Failed to fetch events" });
     }
@@ -232,7 +244,7 @@ app.get('/nfts', async (req, res) => {
         const nfts = await NFT.find(); // Use the correct model here
         const response = nfts.map(nft => ({
             _id: nft._id,
-            tokenId: nft.tokenId, // Ensure this is included
+            tokenId: nft.tokenId, // Ensure tokenId is part of your NFT model
             title: nft.title,
             price: nft.price,
             imageURL: nft.imageURL,
@@ -244,14 +256,13 @@ app.get('/nfts', async (req, res) => {
     }
 });
 
-
 // Endpoint to create a new NFT
 app.post('/nfts', upload.single('image'), async (req, res) => {
-    const { title, price, tokenId } = req.body; // Include tokenId
+    const { title, price, tokenId } = req.body;
     const imageURL = req.file ? `http://localhost:5000/uploads/${req.file.filename}` : '';
 
     try {
-        const newNFT = new NFT({ title, price, imageURL, tokenId }); // Ensure tokenId is included
+        const newNFT = new NFT({ title, price, imageURL, tokenId });
         await newNFT.save();
         res.status(201).json(newNFT);
     } catch (error) {
@@ -259,4 +270,71 @@ app.post('/nfts', upload.single('image'), async (req, res) => {
     }
 });
 
+
+app.post('/book-tickets', verifyUser, async (req, res) => {
+    const { eventId, quantity, totalPrice } = req.body; // userId is not needed here
+
+    // Check if all required fields are present
+    if (!eventId || !quantity || !totalPrice) {
+        return res.status(400).json({ error: 'Missing required fields' });
+    }
+
+    try {
+        // Fetch the event using the eventId
+        const event = await Event.findById(eventId);
+
+        if (!event) {
+            return res.status(404).json({ error: 'Event not found' });
+        }
+
+        // Logic to create a ticket booking
+        const ticket = new Ticket({
+            userId: req.user._id,  // Use the userId from the authenticated user
+            eventId,
+            quantity,
+            totalPrice,
+        });
+
+        await ticket.save();
+
+        res.status(201).json({ message: 'Ticket booked successfully!', ticket });
+    } catch (error) {
+        console.error('Error booking ticket:', error);
+        res.status(500).json({ error: 'Failed to book tickets', details: error.message });
+    }
+});
+
+
+
+
+// Endpoint to get booked tickets for the authenticated user
+app.get('/my-tickets', verifyUser, async (req, res) => {
+    try {
+        const tickets = await Ticket.find({ userId: req.user._id }).populate('eventId');
+        res.status(200).json(tickets);
+    } catch (error) {
+        console.error("Error fetching tickets:", error);
+        res.status(500).json({ error: "Failed to fetch tickets" });
+    }
+});
+
+app.post('/tickets', async (req, res) => {
+    const { eventName, quantity, totalPrice } = req.body;
+
+    try {
+        const newTicket = new Ticket({ eventName, quantity, totalPrice });
+        await newTicket.save();
+        res.status(201).json(newTicket);
+    } catch (error) {
+        res.status(500).json({ message: 'Error booking ticket', error });
+    }
+});
+app.get('/tickets', async (req, res) => {
+    try {
+        const tickets = await Ticket.find(); // Fetch all tickets from the database
+        res.status(200).json(tickets); // Return tickets as JSON
+    } catch (error) {
+        res.status(500).json({ message: 'Error fetching tickets', error });
+    }
+});
 

@@ -18,6 +18,7 @@ import SiteMap from './components/map'
 import LoginPage from './components/LoginpageNew'
 import SignUpPage from './components/SignupPage'
 import AddNFTPage from './components/AddNFTpage'
+import EventBooking from '../Client/src/components/EventBooking'
 
 
 
@@ -30,9 +31,9 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/Events" element={<Events />} />
         <Route path="/MarketPlace" element={<Marketplace />} />
-
         <Route path="/LoginpageNew" element={<LoginPage />} />
         <Route path="/SignUpPage" element={<SignUpPage />} />
+        <Route path="/events/:id" element={<EventBooking />} />
       </Routes>
       <Footer />
 
