@@ -1,0 +1,16 @@
+/* EventDetail.css or your main CSS file */
+
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.3); /* Light color for the spinner */
+    border-radius: 50%;
+    border-top: 4px solid #fff; /* Main color of the spinner */
+    width: 30px; /* Size of the spinner */
+    height: 30px; /* Size of the spinner */
+    animation: spin 1s linear infinite; /* Animation for spinning effect */
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
